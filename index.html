@@ -194,7 +194,7 @@ canvas.card{width:100%;border-radius:12px;box-shadow:0 0 40px rgba(255,30,30,.3)
 .slide{position:relative;width:100%;height:78px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;touch-action:none;user-select:none}
 .stxt{position:absolute;inset:0;display:grid;place-items:center;padding-left:56px;font:400 21px -apple-system,Oswald,sans-serif;color:transparent;background:linear-gradient(90deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,.45) 40%,#fff 50%,rgba(255,255,255,.45) 60%,rgba(255,255,255,.45) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:shim 2.4s linear infinite;pointer-events:none}
 @keyframes shim{from{background-position:120% 0}to{background-position:-120% 0}}
-.knob{position:absolute;left:6px;top:6px;width:66px;height:66px;border-radius:50%;background:#fff;display:grid;place-items:center;cursor:grab;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
+.knob{touch-action:none;-webkit-user-select:none;-webkit-touch-callout:none;position:absolute;left:6px;top:6px;width:66px;height:66px;border-radius:50%;background:#fff;display:grid;place-items:center;cursor:grab;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
 .knob.drag{transition:none;cursor:grabbing}
 .knob.nudge{animation:ndg .7s}
 @keyframes ndg{30%{transform:translateX(40px)}60%{transform:translateX(0)}80%{transform:translateX(12px)}}
@@ -319,9 +319,9 @@ function scratch(){fail();master.gain.cancelScheduledValues(AC.currentTime);mast
 /* ---------- 1. call ---------- */
 const d=new Date();$('#clock').textContent=d.getHours()%12+':'+String(d.getMinutes()).padStart(2,'0');
 let answered=false;
-function answerCall(){if(answered)return;answered=true;audio();AC.resume();loadWrong();blip(1046,'sine',.12,.06);setTimeout(()=>blip(1318,'sine',.16,.06),90);$('#phone').classList.add('out');setTimeout(()=>{answered=false;$('#phone').classList.remove('out');startGame()},950)}
+function answerCall(){if(answered)return;answered=true;try{audio()}catch(e){}try{AC.resume()}catch(e){}try{song.currentTime=START;const pp=song.play();pp&&pp.catch(()=>{})}catch(e){}loadWrong();blip(1046,'sine',.12,.06);setTimeout(()=>blip(1318,'sine',.16,.06),90);$('#phone').classList.add('out');setTimeout(()=>{answered=false;$('#phone').classList.remove('out');startGame()},950)}
 (function(){const k=$('#enter'),sl=$('#slide');let x0=null,dx=0,max=0;
-  k.addEventListener('pointerdown',e=>{x0=e.clientX;max=sl.clientWidth-k.offsetWidth-10;k.classList.add('drag');k.setPointerCapture(e.pointerId)});
+  k.addEventListener('pointerdown',e=>{e.preventDefault();x0=e.clientX;max=sl.clientWidth-k.offsetWidth-10;k.classList.add('drag');try{k.setPointerCapture(e.pointerId)}catch(_){}});
   k.addEventListener('pointermove',e=>{if(x0===null)return;dx=Math.max(0,Math.min(max,e.clientX-x0));k.style.transform=`translateX(${dx}px)`;sl.querySelector('.stxt').style.opacity=1-dx/max});
   const up=()=>{if(x0===null)return;k.classList.remove('drag');if(dx>max*.72){k.style.transform=`translateX(${max}px)`;answerCall()}else{if(dx<6){k.classList.remove('nudge');void k.offsetWidth;k.classList.add('nudge')}k.style.transform='';sl.querySelector('.stxt').style.opacity=1}x0=null;dx=0};
   k.addEventListener('pointerup',up);k.addEventListener('pointercancel',up);
@@ -435,7 +435,7 @@ const keys={};addEventListener('keydown',e=>{keys[e.key]=1;if(e.code==='Space'||
 function startGame(){show('room');size();lvl=0;combo=0;score=0;dispScore=0;best=0;perfects=0;nos=0;drops=0;qi=0;open=false;firstHit=false;clearing=false;
   parts=[];pops=[];calls=[];balls=[];st='count';$('#fin').className='fin';showQ(false);
   master.gain.cancelScheduledValues(0);master.gain.value=1;buildWall();newBall();
-  AC.resume();song.currentTime=START;song.play();upd();lastT=performance.now();requestAnimationFrame(loop)}
+  AC.resume();if(Math.abs(song.currentTime-START)>.3)song.currentTime=START;const pp=song.play();pp&&pp.catch(()=>{});upd();lastT=performance.now();requestAnimationFrame(loop)}
 function loop(now){
   if(!$('#room').classList.contains('on'))return;requestAnimationFrame(loop);
   let dt=Math.min(.033,(now-lastT)/1000||0);lastT=now;const t=song.currentTime;
