@@ -186,7 +186,7 @@ canvas.card{width:100%;border-radius:12px;box-shadow:0 0 40px rgba(var(--rgb),.3
 .pscr .cv3{width:62%;margin-top:6%}
 .cvin .ring1{position:absolute;inset:0;border:2px solid rgba(var(--rgb),.7);border-radius:6px;animation:rp2 2.6s 2.2s infinite;pointer-events:none}
 @keyframes rp2{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.25);opacity:0}}
-.pscr .kick{margin-top:6%;font-size:10px;opacity:1;animation:none;text-align:center}
+.pscr .kick{margin-top:6%;font-size:13.5px;letter-spacing:.16em;opacity:1;animation:none;text-align:center}
 .pscr .ttl{font-size:clamp(34px,10vw,50px);opacity:1;animation:none;text-align:center;margin-top:4px}
 .pscr .tagl{font-size:13px;opacity:1;animation:none;text-align:center}
 .acts{margin-top:auto;width:100%;display:flex;justify-content:space-around;margin-bottom:16px}
@@ -233,6 +233,7 @@ html[data-theme=ftb] #verdict{background:radial-gradient(circle at 50% 30%,#032a
 .tapme.tl{right:calc(50% + 54px);text-align:right;animation:tpl 1s ease-in-out infinite}
 .tapme.tr{left:calc(50% + 54px);animation:tpr 1s ease-in-out infinite}.tapme.tr i{transform:scaleX(-1)}
 @keyframes tpl{50%{transform:translateX(8px)}}@keyframes tpr{50%{transform:translateX(-8px)}}
+.yz{font-style:normal;font-weight:700;color:#fff;font-size:1.18em;text-shadow:0 0 10px rgba(var(--rgb),.8)}
 </style>
 <script>try{const q=new URLSearchParams(location.search).get("theme");const t=q||localStorage.getItem("ay_theme")||"dw";document.documentElement.dataset.theme=t==="ftb"?"ftb":"dw"}catch(e){document.documentElement.dataset.theme="dw"}
 var TH=document.documentElement.dataset.theme;
@@ -241,7 +242,7 @@ var FTBMAP=[0,8,2,6,8,1,5,7,2,2,3,5,3,7,5,6,8,4,7,1,8,1,2,6,5,4,1];
 </script>
 </head>
 <body>
-<div class="counter" id="counter">GLOBAL YES COUNT · <b id="gN">2,843,901</b></div>
+<div class="counter" id="counter">GLOBAL <em class="yz">YES</em> COUNT · <b id="gN">2,843,901</b></div>
 
 <!-- 1. missed call -->
 <section class="scene on" id="call">
@@ -307,7 +308,7 @@ var FTBMAP=[0,8,2,6,8,1,5,7,2,2,3,5,3,7,5,6,8,4,7,1,8,1,2,6,5,4,1];
   </div>
   <div class="next">
     <div class="global">
-      <small>GLOBAL YES COUNT · EVERY BEAT BONUS COUNTS</small>
+      <small>GLOBAL <em class="yz">YES</em> COUNT · EVERY BEAT BONUS COUNTS</small>
       <div class="n" id="gN2">2,843,901</div>
       <div class="bar"><i id="gBar"></i></div>
       <p>🔒 NEXT UNLOCK: <b id="gNext">3,000,000</b> YES</p>
