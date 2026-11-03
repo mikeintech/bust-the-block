@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Ain't You? · Additup</title>
 <meta name="description" content="Additup — Gangsta Bxtch. Ain't You?: answer the call, hit YES on the beat, break the wall.">
 <meta name="theme-color" content="#0a0000">
@@ -17,7 +17,7 @@ html,body{height:100%;background:#000;color:#fff;font-family:Oswald,sans-serif;o
 body{position:fixed;inset:0}
 #verdict{touch-action:pan-y}
 button,input,a{touch-action:manipulation}
-input{-webkit-user-select:text;user-select:text}
+input{-webkit-user-select:text;user-select:text;font-size:16px!important}
 .scene{position:fixed;top:0;bottom:0;left:50%;width:min(100vw,calc(100dvh*9/16));transform:translateX(-50%);overflow:hidden;display:none;align-items:center;justify-content:center;flex-direction:column}
 .scene.on{display:flex}
 .grain{position:fixed;top:0;bottom:0;left:50%;width:min(100vw,calc(100dvh*9/16));margin-left:calc(min(100vw,calc(100dvh*9/16))/-2);pointer-events:none;z-index:50;opacity:.13;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:gr .4s steps(3) infinite}
@@ -685,7 +685,7 @@ $('#share').onclick=()=>$('#card').toBlob(async b=>{const f=new File([b],'bust-t
 $('#again').onclick=()=>{$('#stamp').classList.remove('go');startGame()};
 if(location.search.includes('t='))song.addEventListener('play',()=>{const v=+new URLSearchParams(location.search).get('t');if(v&&ST()<1)song.currentTime=v},{once:true});
 
-document.addEventListener('gesturestart',e=>e.preventDefault());
+
 /* performance video, synced to the song */
 (function(){const v=$('#pv'),fw=$('#fw'),VOFF=5;v.src=`vid/${TH==='ftb'?'ftb':'dw'}.mp4`;
   let mode='v';try{mode=localStorage.getItem('ay_vmode')||'v'}catch(e){}
