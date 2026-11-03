@@ -246,6 +246,18 @@ html[data-theme=ftb] #verdict{background:radial-gradient(circle at 50% 30%,#032a
 @keyframes pkw{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.9);opacity:0}}
 @keyframes pkp{10%,30%{transform:rotate(-14deg)}20%{transform:rotate(14deg)}}
 .pick span{font:700 15px Oswald!important;letter-spacing:.2em;text-transform:uppercase}
+@media (max-width:540px){
+  .ph2{width:100%;height:100%;aspect-ratio:auto;padding:0;border-radius:0;background:none;box-shadow:none;animation:pin .9s .15s cubic-bezier(.2,.9,.3,1) forwards}
+  .pscr{border-radius:0;padding:calc(max(12px,env(safe-area-inset-top)) + 34px) 18px max(10px,env(safe-area-inset-bottom))}
+  .ph2 .island,.ph2 .sbar,.ph2 .hbar{display:none}
+  .callhd{margin-top:1%}
+  .pscr{padding-bottom:calc(max(10px,env(safe-area-inset-bottom)) + 22px)}
+  .pscr .cv3{width:min(64vw,calc(100dvh*.27))!important;margin-top:2dvh}
+  .pscr .ttl{font-size:clamp(30px,min(10vw,5.6dvh),50px)}
+  .thm{margin:auto 0 3.2dvh}.thm button{height:min(86px,9.5dvh)}
+  .pickb{width:min(112px,13dvh)!important;height:min(112px,13dvh)!important}
+  .pick{margin-bottom:0}
+}
 </style>
 <script>try{const q=new URLSearchParams(location.search).get("theme");const t=q||localStorage.getItem("ay_theme")||"dw";document.documentElement.dataset.theme=t==="ftb"?"ftb":"dw"}catch(e){document.documentElement.dataset.theme="dw"}
 var TH,A1,AR,A2,GD,BG;function themeVars(t){TH=t==='ftb'?'ftb':'dw';document.documentElement.dataset.theme=TH;const f=TH==='ftb';A1=f?'#27c4ff':'#ff1e1e';AR=f?'39,196,255':'255,30,30';A2=f?'#bfeaff':'#ff9a9a';GD=f?'#eaf8ff':'#ffc93c';BG=f?'#00070c':'#070000'}themeVars(document.documentElement.dataset.theme);
