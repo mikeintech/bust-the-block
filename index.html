@@ -215,7 +215,7 @@ html[data-theme=ftb]{--dk25:0,12,25;--dk40:0,20,40;--red:#27c4ff;--rgb:39,196,25
 html[data-theme=ftb] #call .hbg,html[data-theme=ftb] .pbg{background-image:url(img/ftb4.jpg)}
 html[data-theme=ftb] #room{background:#00070c}
 html[data-theme=ftb] #verdict{background:radial-gradient(circle at 50% 30%,#032a3a,#000 70%)}
-.thm{display:flex;gap:6px;width:100%;margin:auto 0 14px;padding:4px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
+.thm{display:flex;gap:6px;width:100%;margin:auto 0 30px;padding:4px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
 .thm button{flex:1;border:0;border-radius:999px;padding:8px 4px;background:transparent;color:rgba(255,255,255,.75);font:700 10.5px Oswald;letter-spacing:.12em;cursor:pointer}
 .thm button.on{background:var(--red);color:#fff;box-shadow:0 0 14px rgba(var(--rgb),.6)}
 .thm small{display:block;font:500 8px Oswald;letter-spacing:.2em;opacity:.75;margin-top:1px}
@@ -691,11 +691,14 @@ if(location.search.includes('t='))song.addEventListener('play',()=>{const v=+new
   let mode='v';try{mode=localStorage.getItem('ay_vmode')||'v'}catch(e){}
   const paint=()=>{fw.classList.toggle('stills',mode==='s');document.querySelectorAll('#vtog b').forEach(b=>b.classList.toggle('on',b.dataset.m===mode))};paint();
   $('#vtog').addEventListener('click',e=>{e.stopPropagation();mode=mode==='v'?'s':'v';try{localStorage.setItem('ay_vmode',mode)}catch(_){}paint()});
+  let sk0=0,lag=.15;v.addEventListener('seeked',()=>{if(sk0){lag=Math.min(.8,lag*.5+((performance.now()-sk0)/1000)*.5);sk0=0}});
   window.__pvKick=()=>{try{const p=v.play();p&&p.catch(()=>{})}catch(e){}};
   (function sync(){requestAnimationFrame(sync);if(mode!=='v'||!$('#room').classList.contains('on'))return;
     const t=ST()-VOFF;if(song.paused||t<0||t>v.duration-.1){if(!v.paused)v.pause();return}
-    if(v.paused)window.__pvKick();if(Math.abs(v.currentTime-t)>.25)v.currentTime=t;
-    const d=t-v.currentTime;v.playbackRate=Math.abs(d)>.05?(d>0?1.06:.94):1})();
+    if(v.paused)window.__pvKick();if(v.seeking)return;
+    const d=t-v.currentTime;
+    if(Math.abs(d)>.35){sk0=performance.now();v.currentTime=Math.min(v.duration-.2,t+lag);return}
+    const r=1+Math.max(-.12,Math.min(.12,d*.9));if(Math.abs(v.playbackRate-r)>.015)v.playbackRate=r;})();
 })();
 </script>
 </body>
