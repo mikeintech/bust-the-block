@@ -613,7 +613,7 @@ function draw(t){
     g.font='700 13px Oswald';g.fillStyle='#fff';g.fillText('DRAG TO MOVE · HIT YES ON THE BEAT',W/2,H*.5+70)}
   // callouts
   for(const c of calls){const s=1+Math.max(0,c.life-.85)*5,al=Math.min(1,c.life*2.5);g.save();g.translate(W/2,H*.4);g.rotate(-.06);g.scale(s,s);g.globalAlpha=al;
-    g.font=`${c.sz}px "Permanent Marker"`;{const mw=g.measureText(c.txt).width;if(mw>W*.86){const k=W*.86/mw;g.scale(k,k)}}g.lineWidth=8;g.strokeStyle='#000';g.strokeText(c.txt,0,0);g.shadowColor=c.c;g.shadowBlur=24;g.fillStyle=c.c;g.fillText(c.txt,0,0);g.shadowBlur=0;
+    g.font=`${c.sz}px "Permanent Marker"`;g.textAlign='center';g.textBaseline='middle';{const mw=g.measureText(c.txt).width+16;if(mw*s>W*.9){const k=W*.9/(mw*s);g.scale(k,k)}}g.lineWidth=8;g.strokeStyle='#000';g.strokeText(c.txt,0,0);g.shadowColor=c.c;g.shadowBlur=24;g.fillStyle=c.c;g.fillText(c.txt,0,0);g.shadowBlur=0;
     if(c.sub){g.font='700 15px Oswald';g.fillStyle='#fff';g.fillText(c.sub,0,c.sz*.62)}g.restore()}
   if(flashA>.01){g.globalAlpha=flashA;g.fillStyle=flashC;g.fillRect(0,0,W,H);g.globalAlpha=1}
 }
