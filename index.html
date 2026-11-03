@@ -667,7 +667,7 @@ $('#recBtn').onclick=async()=>{
 };
 let clip=null;
 $('#pvSave').onclick=async()=>{if(!clip)return;const f=new File([clip.blob],'aint-you-yes.'+clip.ext,{type:clip.blob.type});
-  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:"Ain't you my gangsta? YES 👀 @additup"});return}catch(e){}}
+  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:"Ain't you my gangsta bxtch? YES 👀 @additup"});return}catch(e){}}
   const a=document.createElement('a');a.href=URL.createObjectURL(clip.blob);a.download=f.name;a.click()};
 $('#pvRe').onclick=()=>{$('#prev').classList.remove('on');$('#pv').pause();$('#recBtn').click()};
 $('#skipBooth').onclick=verdict;
@@ -684,7 +684,7 @@ function card(){const name=($('#who').value.trim()||'@YOURNAME').toUpperCase();c
     const r=Math.max(1080/cimg.width,1350/cimg.height);x.globalAlpha=.55;x.drawImage(cimg,(1080-cimg.width*r)/2,0,cimg.width*r,cimg.height*r);x.globalAlpha=1;
     const g=x.createLinearGradient(0,0,0,1350);g.addColorStop(0,'rgba(0,0,0,.6)');g.addColorStop(.5,'rgba(0,0,0,.2)');g.addColorStop(1,'rgba(0,0,0,.9)');x.fillStyle=g;x.fillRect(0,0,1080,1350);
     x.textAlign='center';x.save();x.translate(540,300);x.rotate(-.07);x.font='150px "Permanent Marker"';x.lineWidth=14;x.strokeStyle='#000';x.strokeText("AIN'T YOU",0,0);x.fillStyle='#fff';x.fillText("AIN'T YOU",0,0);
-    x.font='96px "Permanent Marker"';x.strokeText('MY GANGSTA',0,120);x.fillText('MY GANGSTA',0,120);x.restore();
+    x.font='86px "Permanent Marker"';x.strokeText('MY GANGSTA BXTCH',0,120);x.fillText('MY GANGSTA BXTCH',0,120);x.restore();
     let fs=170;x.font=`${fs}px "Permanent Marker"`;while(x.measureText(name).width>980&&fs>60){fs-=8;x.font=`${fs}px "Permanent Marker"`}
     x.save();x.translate(540,720);x.rotate(-.05);x.shadowColor=A1;x.shadowBlur=40;x.fillStyle=A1;x.fillText(name,0,0);x.shadowBlur=0;
     // drips
@@ -695,7 +695,7 @@ function card(){const name=($('#who').value.trim()||'@YOURNAME').toUpperCase();c
   document.fonts.ready.then(()=>cimg.complete?draw():cimg.onload=draw)}
 $('#mk').onclick=card;$('#who').oninput=()=>{clearTimeout(window._t);window._t=setTimeout(card,300)};
 $('#share').onclick=()=>$('#card').toBlob(async b=>{const f=new File([b],'bust-the-block.png',{type:'image/png'});
-  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:`I scored ${score.toLocaleString()} on Ain't You? 🎤 Ain't you my gangsta? @additup`})}catch(e){}}else{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='bust-the-block.png';a.click()}});
+  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:`I scored ${score.toLocaleString()} on Ain't You? 🎤 Ain't you my gangsta bxtch? @additup`})}catch(e){}}else{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='bust-the-block.png';a.click()}});
 $('#again').onclick=()=>{$('#stamp').classList.remove('go');startGame()};
 if(location.search.includes('t='))song.addEventListener('play',()=>{const v=+new URLSearchParams(location.search).get('t');if(v&&ST()<1)song.currentTime=v},{once:true});
 
